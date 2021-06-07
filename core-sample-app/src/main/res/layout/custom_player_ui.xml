@@ -19,7 +19,7 @@
         android:text="custom Ui example"
         android:textSize="20sp"
         android:textColor="@android:color/white"
-
+        android:visibility="gone"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true" />
 
@@ -28,6 +28,7 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:visibility="gone"
 
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -54,18 +55,51 @@
         android:id="@+id/play_pause_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Play/Pause"
+        android:layout_alignParentEnd="true"
 
-        android:layout_centerVertical="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="16dp"
+        android:text="Play/Pause" />
+
+    <ImageView
+        android:id="@+id/play_next_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:src="@drawable/ic_fast_forward_white_24dp" />
+
+    <ImageView
+        android:id="@+id/play_prev_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:layout_alignParentBottom="true"
+        android:src="@drawable/ic_fast_rewind_white_24dp" />
+
+    <Button
+        android:id="@+id/video_quality_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/enter_exit_fullscreen_button"
+
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="0dp"
+        android:text="change quality" />
 
     <Button
         android:id="@+id/enter_exit_fullscreen_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Enter/exit fullscreen"
-
-        android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:layout_toLeftOf="@+id/play_pause_button"
+        android:layout_alignTop="@id/play_pause_button"
+        android:layout_toStartOf="@+id/play_pause_button"
+        android:text="fullscreen" />
 
 </RelativeLayout>

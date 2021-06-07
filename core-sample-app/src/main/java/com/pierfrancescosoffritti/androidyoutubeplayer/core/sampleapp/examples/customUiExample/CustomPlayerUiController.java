@@ -4,14 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
+
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.PlayerConstants;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer;
+import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayerBridge;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener;
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.YouTubePlayerFullScreenListener;
@@ -54,6 +58,9 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
         videoDurationTextView = playerUi.findViewById(R.id.video_duration);
         Button playPauseButton = playerUi.findViewById(R.id.play_pause_button);
         Button enterExitFullscreenButton = playerUi.findViewById(R.id.enter_exit_fullscreen_button);
+        Button videoQualityButton = playerUi.findViewById(R.id.video_quality_button);
+        ImageView playNextButton = playerUi.findViewById(R.id.play_next_button);
+        ImageView playPrevButton = playerUi.findViewById(R.id.play_prev_button);
 
         playPauseButton.setOnClickListener( (view) -> {
             if(playerTracker.getState() == PlayerConstants.PlayerState.PLAYING) youTubePlayer.pause();
@@ -63,8 +70,15 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
         enterExitFullscreenButton.setOnClickListener( (view) -> {
             if(fullscreen) youTubePlayerView.exitFullScreen();
             else youTubePlayerView.enterFullScreen();
-
             fullscreen = !fullscreen;
+        });
+
+        playNextButton.setOnClickListener( (view) -> {
+            youTubePlayer.seekTo(playerTracker.getCurrentSecond()+10f);
+        });
+
+        playPrevButton.setOnClickListener( (view) -> {
+            youTubePlayer.seekTo(playerTracker.getCurrentSecond()-10f);
         });
     }
 
@@ -81,6 +95,12 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
             if(state == PlayerConstants.PlayerState.BUFFERING)
                 panel.setBackgroundColor(ContextCompat.getColor(context, android.R.color.transparent));
     }
+
+    @Override
+    public void onPlaybackQualityChange(@NonNull YouTubePlayer youTubePlayer, @NonNull PlayerConstants.PlaybackQuality playbackQuality){
+        Log.d("*************", "onPlaybackQualityChange: "+playbackQuality.name());
+    }
+
 
     @SuppressLint("SetTextI18n")
     @Override
