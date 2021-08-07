@@ -63,8 +63,9 @@ class CustomPlayerUiController extends AbstractYouTubePlayerListener implements 
         ImageView playPrevButton = playerUi.findViewById(R.id.play_prev_button);
 
         playPauseButton.setOnClickListener( (view) -> {
-            if(playerTracker.getState() == PlayerConstants.PlayerState.PLAYING) youTubePlayer.pause();
-            else youTubePlayer.play();
+           /* if(playerTracker.getState() == PlayerConstants.PlayerState.PLAYING) youTubePlayer.pause();
+            else youTubePlayer.play();*/
+            youTubePlayer.setPlayBackRate(0.5);
         });
 
         enterExitFullscreenButton.setOnClickListener( (view) -> {

@@ -137,6 +137,10 @@ function YouTubePlayer(communicationConstants, communicationChannel) {
         return actions
     }
 
+    function setPlayBackRate(rate){
+        player.setPlaybackRate(rate);
+    }
+
     const actions = { seekTo, pauseVideo, playVideo, loadVideo, cueVideo, mute, unMute, setVolume }
     
     return {

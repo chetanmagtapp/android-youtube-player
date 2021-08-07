@@ -32,6 +32,11 @@ interface YouTubePlayer {
     fun setVolume(volumePercent: Int)
 
     /**
+     * playback speed
+     */
+    fun setPlayBackRate(rate: Double)
+
+    /**
      *
      * @param time The absolute time in seconds to seek to
      */
